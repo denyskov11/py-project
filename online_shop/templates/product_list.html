@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Product List</h1>
+     <a href="{{ url_for('routes.add_product') }}">Add Product</a>
+    <table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Stock</th>
+    <th>Is_active</th>
+    <th>Category</th>
+    <th>Rating</th>
+    <th>Sale</th>
+    <th>Created</th>
+    <th>Updated</th>
+  </tr>
+  {% for product in products%} 
+<tr>
+    <th>{{product.id}}</th>
+    <th>{{product.name}}</th>
+    <th>{{product.description}}</th>
+    <th>{{product.price}}</th>
+    <th>{{product.stock}}</th>
+    <th>{{product.is_active}}</th>
+    <th>{{product.category}}</th>
+    <th>{{product.rating}}</th>
+    <th>{{product.sale}}</th>
+    <th>{{product.created_at}}</th>
+    <th>{{product.updated_at}}</th>
+</tr>
+  {% endfor%}
+  </table>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ action }} Product</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>{{ action }} Product</h1>
+    <form method="post">
+        <label>Name:
+            <input type="text" name="name"
+            value="{{ product.name if product else '' }}" required>
+        </label><br>
+        <label>Price:
+            <input type="number" step="0.01" name="price"
+            value="{{ product.price if product else '' }}" required></label><br>
+       <label>Description:
+            <input type="text"  name="description" 
+            value="{{ product.description if product else '' }}" ></label><br>
+        <label>Stock:
+            <input type="number"  name="stock" 
+            value="{{ product.stock if product else '0' }}" ></label><br>
+        <label>Is_active:
+            <input type="checkbox" name="is_active"
+            {% if product and product.is_active %}checked{% endif %}>
+
+</label><br>            
+         <label>Category:
+            <input type="text"  name="category" 
+            value="{{ product.category if product else '' }}" ></label><br>
+        <label>Rating:
+            <input type="number" max="5" step="0.1" name="rating" 
+            value="{{ product.rating if product else '0' }}" ></label><br>
+         <label>Sale:
+            <input type="checkbox" name="sale"{% if product and product.sale %}checked{% endif %}>
+          
+        </label><br> 
+                    <button type="submit">{{ action }}</button>
+        </form>
+    <a href="{{ url_for('routes.product') }}">Back to list</a>
+</body>
+</html>
