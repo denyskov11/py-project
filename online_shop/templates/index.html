@@ -14,11 +14,23 @@
     <div class="products">
         {% for product in products %}
         <div class="card">
+                        <div class="image-wrapper"> 
              <img src="{{ url_for('static', filename='images/' ~ product.id ~ '.png') }}"
                     alt="{{ product.name }}"
                     onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/default.png') }}'">
+                         {% if product.sale %} 
+                    <img class="sale-icon" src="{{url_for('static', filename='images/sale.png')}}"alt="Sale"/>
+                    {% endif %}
+                        </div>
              <h2 class="product-name">{{ product.name }}</h2>       
-             <p class="product-feature">Ціна: ₴{{'%.2f'| format(product.price) }}</p>      
+             <p class="product-feature">Ціна: ₴{{'%.2f'| format(product.price) }}</p>     
+             <div class="rating" data-rating="{{ product.rating }}">
+               <span class="star">★</span>
+               <span class="star">★</span>
+               <span class="star">★</span>
+               <span class="star">★</span>
+               <span class="star">★</span>
+             </div> 
              <div class="card-actions">
                 <button class="btn btn-details" 
                 data-name="{{ product.name|e }}"
@@ -38,8 +50,13 @@
             <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-name">
                 <button class="modal-close" aria-label="Close">&times;</button>
             <div class="modal-body">
-           <img id ="modal-image" src="" alt="Product image"
-           onerror=this.onerror=null;this.src='{{ url_for('static', filename='images/default.png') }}'>
+
+
+                    <img id ="modal-image" src="" alt="Product image"
+                    onerror=this.onerror=null;this.src='{{ url_for('static', filename='images/default.png') }}'>
+               
+       
+
           <div class="modal-content">
                         <h2 id="modal-name"></h2>
                         <p class="product-feature" id="modal-price"></p>
@@ -51,5 +68,6 @@
             </div>
     </div>
     <script src="{{ url_for('static', filename='modal.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>
